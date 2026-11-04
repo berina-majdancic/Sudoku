@@ -1,17 +1,19 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-
+using Sudoku.Services;
 namespace Sudoku
 {
     public partial class App : Application
     {
-        public App()
+        public App(DatabaseService databaseService)
         {
             InitializeComponent();
+            MainPage = new AppShell();
+            InitializeDatabase(databaseService);
         }
 
-        protected override Window CreateWindow(IActivationState? activationState)
+        private async void InitializeDatabase(DatabaseService databaseService)
         {
-            return new Window(new AppShell());
+            await databaseService.InitializeAsync();
         }
     }
 }
