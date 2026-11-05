@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sudoku.Views.GamePage"
+              BackgroundColor="#F5F5F0"
+                Title="Sudoku">
+    <Grid Padding="15"
+          RowDefinitions="Auto,Auto,*,Auto,Auto"
+          RowSpacing="12">
+    <VerticalStackLayout
+        Padding="25"
+        Spacing="20"
+        VerticalOptions="Center">
+
+        <Label
+            Text="SUDOKU"
+            FontSize="32"
+            FontAttributes="Bold"
+            TextColor="#252525"
+            HorizontalOptions="Center"/>
+
+        <Label
+            x:Name="DifficultyLabel"
+            FontSize="20"
+            TextColor="#888888"
+            HorizontalOptions="Center"/>
+
+        <Label
+            Text="Sudoku board will appear here."
+            FontSize="16"
+            TextColor="#252525"
+            HorizontalOptions="Center"/>
+
+    </VerticalStackLayout>
+
+    <Grid Grid.Row="1"
+              ColumnDefinitions="*,*">
+
+        <VerticalStackLayout Grid.Column="0"
+                                 HorizontalOptions="Center">
+            <Label Text="TIME"
+                       FontSize="11"
+                       TextColor="#888888"/>
+            <Label x:Name="TimerLabel"
+                       Text="00:00"
+                       FontSize="20"
+                       TextColor="#252525"/>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Grid.Column="1"
+                                 HorizontalOptions="Center">
+            <Label Text="ERRORS"
+                       FontSize="11"
+                       TextColor="#888888"/>
+            <Label x:Name="ErrorsLabel"
+                       Text="0"
+                       FontSize="20"
+                       TextColor="#252525"/>
+        </VerticalStackLayout>
+
+    </Grid>
+
+    <Grid Grid.Row="2"
+              x:Name="SudokuBoard"
+              BackgroundColor="#252525"
+              Padding="1"
+              RowSpacing="1"
+              ColumnSpacing="1"
+              VerticalOptions="Center"
+              HorizontalOptions="Fill"/>
+
+    <Grid Grid.Row="3"
+              x:Name="NumberPad"
+              ColumnDefinitions="*,*,*,*,*,*,*,*,*"
+              ColumnSpacing="3"/>
+
+    <Grid Grid.Row="4"
+              ColumnDefinitions="*,*"
+              ColumnSpacing="15">
+
+        <Button
+                Grid.Column="0"
+                Text="ERASE"
+                BackgroundColor="#E5E5DD"
+                TextColor="#252525"
+                CornerRadius="10"
+                Clicked="OnEraseClicked"/>
+
+        <Button
+                Grid.Column="1"
+                Text="HINT"
+                BackgroundColor="#252525"
+                TextColor="White"
+                CornerRadius="10"
+                Clicked="OnHintClicked"/>
+
+    </Grid>
+
+    </Grid>
+
+</ContentPage>
