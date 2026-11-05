@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sudoku.Views.DifficultyPage"
+             Title="Select Difficulty"
+            BackgroundColor="#F5F5F0">
+    <Grid Padding="25"
+          RowDefinitions="Auto,*,Auto">
+
+        <VerticalStackLayout
+            Grid.Row="0"
+            Spacing="8"
+            Margin="0,30,0,30">
+
+            <Label
+                Text="SELECT DIFFICULTY"
+                FontSize="28"
+                FontAttributes="Bold"
+                TextColor="#252525"
+                HorizontalOptions="Center"/>
+
+            <Label
+                Text="Choose your challenge"
+                FontSize="15"
+                TextColor="#888888"
+                HorizontalOptions="Center"/>
+
+        </VerticalStackLayout>
+
+        <VerticalStackLayout
+            Grid.Row="1"
+            Spacing="18"
+            VerticalOptions="Center">
+
+            <Button
+                Text="EASY"
+                BackgroundColor="#A8C9A0"
+                TextColor="#252525"
+                FontSize="20"
+                FontAttributes="Bold"
+                HeightRequest="75"
+                CornerRadius="12"
+                Clicked="OnEasyClicked"/>
+
+            <Button
+                Text="MEDIUM"
+                BackgroundColor="#E8C987"
+                TextColor="#252525"
+                FontSize="20"
+                FontAttributes="Bold"
+                HeightRequest="75"
+                CornerRadius="12"
+                Clicked="OnMediumClicked"/>
+
+            <Button
+                Text="HARD"
+                BackgroundColor="#D9958D"
+                TextColor="#252525"
+                FontSize="20"
+                FontAttributes="Bold"
+                HeightRequest="75"
+                CornerRadius="12"
+                Clicked="OnHardClicked"/>
+
+        </VerticalStackLayout>
+
+        <Label
+            Grid.Row="2"
+            Text="SELECT YOUR LEVEL"
+            FontSize="11"
+            TextColor="#999999"
+            HorizontalOptions="Center"
+            VerticalOptions="End"
+            Margin="0,0,0,15"/>
+
+    </Grid>
+
+</ContentPage>
