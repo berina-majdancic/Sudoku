@@ -2,21 +2,21 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sudoku.Views.GamePage"
-              BackgroundColor="#F5F5F0"
+              BackgroundColor="#252525"
                 Title="Sudoku">
-    <Grid Padding="15"
+    <Grid Padding="7"
           RowDefinitions="Auto,Auto,*,Auto,Auto"
-          RowSpacing="12">
+          RowSpacing="15">
     <VerticalStackLayout
-        Padding="25"
-        Spacing="20"
+        Padding="7"
+        Spacing="10"
         VerticalOptions="Center">
 
         <Label
             Text="SUDOKU"
             FontSize="32"
             FontAttributes="Bold"
-            TextColor="#252525"
+            TextColor="#E5E5DD"
             HorizontalOptions="Center"/>
 
         <Label
@@ -25,11 +25,7 @@
             TextColor="#888888"
             HorizontalOptions="Center"/>
 
-        <Label
-            Text="Sudoku board will appear here."
-            FontSize="16"
-            TextColor="#252525"
-            HorizontalOptions="Center"/>
+       
 
     </VerticalStackLayout>
 
@@ -44,18 +40,18 @@
             <Label x:Name="TimerLabel"
                        Text="00:00"
                        FontSize="20"
-                       TextColor="#252525"/>
+                       TextColor="#888888"/>
         </VerticalStackLayout>
 
         <VerticalStackLayout Grid.Column="1"
                                  HorizontalOptions="Center">
-            <Label Text="ERRORS"
+            <Label Text="MISTAKES"
                        FontSize="11"
                        TextColor="#888888"/>
-            <Label x:Name="ErrorsLabel"
+            <Label x:Name="MistakesLabel"
                        Text="0"
                        FontSize="20"
-                       TextColor="#252525"/>
+                       TextColor="#888888"/>
         </VerticalStackLayout>
 
     </Grid>
@@ -63,16 +59,19 @@
     <Grid Grid.Row="2"
               x:Name="SudokuBoard"
               BackgroundColor="#252525"
-              Padding="1"
-              RowSpacing="1"
-              ColumnSpacing="1"
+              Padding="0"
+              RowSpacing="0"
+              ColumnSpacing="0"
               VerticalOptions="Center"
-              HorizontalOptions="Fill"/>
+              HorizontalOptions="Center"
+                
+              />
 
-    <Grid Grid.Row="3"
+            <Grid Grid.Row="3"
               x:Name="NumberPad"
               ColumnDefinitions="*,*,*,*,*,*,*,*,*"
-              ColumnSpacing="3"/>
+              ColumnSpacing="3"
+              />
 
     <Grid Grid.Row="4"
               ColumnDefinitions="*,*"
@@ -81,8 +80,8 @@
         <Button
                 Grid.Column="0"
                 Text="ERASE"
-                BackgroundColor="#E5E5DD"
-                TextColor="#252525"
+                BackgroundColor="#252525"
+                TextColor="#E5E5DD"
                 CornerRadius="10"
                 Clicked="OnEraseClicked"/>
 
