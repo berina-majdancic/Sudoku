@@ -1,11 +1,14 @@
+using Sudoku.Services;
 namespace Sudoku.Views;
 
 public partial class DifficultyPage : ContentPage
 {
-	public DifficultyPage()
+    private readonly DatabaseService _databaseService;
+    public DifficultyPage(DatabaseService databaseService)
 	{
 		InitializeComponent();
-	}
+        _databaseService = databaseService;
+    }
     private async void OnEasyClicked(object sender, EventArgs e)
     {
         await StartGame("Easy");
@@ -19,9 +22,8 @@ public partial class DifficultyPage : ContentPage
         await StartGame("Hard");
     }
 
-    }
     private async Task StartGame(string difficulty)
     {
-        await Navigation.PushAsync(new GamePage(difficulty));
+        await Navigation.PushAsync(new GamePage(difficulty, _databaseService));
     }
 }

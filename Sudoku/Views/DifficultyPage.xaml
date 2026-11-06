@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sudoku.Views.DifficultyPage"
              Title="Select Difficulty"
-            BackgroundColor="#F5F5F0">
+            BackgroundColor="#252525">
     <Grid Padding="25"
           RowDefinitions="Auto,*,Auto">
 
@@ -16,7 +16,7 @@
                 Text="SELECT DIFFICULTY"
                 FontSize="28"
                 FontAttributes="Bold"
-                TextColor="#252525"
+                TextColor="#E5e5e5"
                 HorizontalOptions="Center"/>
 
             <Label
