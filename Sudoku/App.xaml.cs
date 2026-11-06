@@ -7,7 +7,7 @@ namespace Sudoku
         public App(DatabaseService databaseService)
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new MainPage(databaseService));
             InitializeDatabase(databaseService);
         }
 

@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sudoku.MainPage"
-             BackgroundColor="#F5F5F0"
+             BackgroundColor="#252525"
              NavigationPage.HasNavigationBar="False">
 
     <Grid Padding="30"
@@ -11,21 +11,23 @@
             Grid.Row="0"
             VerticalOptions="End"
             HorizontalOptions="Center"
-            Spacing="10">
+            Spacing="10"
+            />
 
-            <Label
+        <Label
                 Text="SUDOKU"
                 FontSize="42"
                 FontAttributes="Bold"
-                TextColor="#252525"
+                TextColor="#E5e5e5"
                 HorizontalOptions="Center"/>
 
-            <Label
+        <Label
                 Text="Challenge your mind"
                 FontSize="16"
                 TextColor="#888888"
-                HorizontalOptions="Center"/>
-        </VerticalStackLayout>
+                HorizontalOptions="Center"
+                />
+
 
         <VerticalStackLayout
             Grid.Row="1" 
@@ -33,12 +35,13 @@
             VerticalOptions="Center">
             <Button
                 Text="NEW GAME"
-                BackgroundColor="#252525"
+                BackgroundColor="DimGrey"
                 TextColor="White"
                 FontSize="18"
                 HeightRequest="60"
                 CornerRadius="12"
-                Clicked="OnNewGameClicked"/>
+                Clicked="OnNewGameClicked"
+                />
             <Button
                 Text="STATISTICS"
                 BackgroundColor="#E5E5DD"

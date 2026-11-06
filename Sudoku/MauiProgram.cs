@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using Sudoku.Services;
-using Sudoku.Services;
 namespace Sudoku
 {
     public static class MauiProgram
