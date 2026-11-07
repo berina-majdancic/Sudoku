@@ -19,7 +19,7 @@ public partial class GamePage : ContentPage
     private int _selectedRow = -1;
     private int _selectedColumn = -1;
     private int[] _mistakePosition = new int[2];
-    private  System.Diagnostics.Stopwatch _stopwatch;
+    private  System.Diagnostics.Stopwatch _stopwatch= new();
     private IDispatcherTimer _timer;
 
     public GamePage(string difficulty, DatabaseService databaseService)
@@ -134,7 +134,7 @@ public partial class GamePage : ContentPage
         if (!(_mistakePosition[0] == row && _mistakePosition[1] == column))
             _cells[_selectedRow, _selectedColumn].BackgroundColor = Colors.Grey;
     }
-    private void EnterNumber(int number)
+    private async Task EnterNumber(int number)
     {
         if (_selectedRow == -1 || _mistakeMade || _fixedCells[_selectedRow, _selectedColumn])
             return;
@@ -143,7 +143,7 @@ public partial class GamePage : ContentPage
 
         _cells[_selectedRow, _selectedColumn].Text =
             number.ToString();
-        if(!CheckSolution())
+        if (!CheckSolution())
         {
             _cells[_selectedRow, _selectedColumn].BackgroundColor = Colors.Red;
             _mistakesCount++;
@@ -152,15 +152,30 @@ public partial class GamePage : ContentPage
             _mistakePosition[0] = _selectedRow;
             _mistakePosition[1] = _selectedColumn;
         }
+        else
+            CheckSolved();
+       
     }
     private bool CheckSolution()
     {
         if (_board[_selectedRow, _selectedColumn]==_solution[_selectedRow, _selectedColumn])
-        return true;
+            return true;
         return false;
     }
 
-
+    private async void CheckSolved()
+    {
+        for(int row = 0; row < 9; row++)
+        {
+            for (int col = 0; col < 9; col++)
+            {
+                if (_board[row, col] != _solution[row, col])
+                    return;
+            }
+        }
+        await DisplayAlertAsync("Congratulations!", "You solved the puzzle!", "OK");
+        SendBackButtonPressed();
+    }
     private void OnEraseClicked(object sender, EventArgs e)
     {
         if (_selectedRow == -1 || _fixedCells[_selectedRow, _selectedColumn])
@@ -180,10 +195,12 @@ public partial class GamePage : ContentPage
     // Hint
     private async void OnHintClicked(object sender, EventArgs e)
     {
-        await DisplayAlertAsync(
-            "Hint",
-            "Hint functionality will be implemented later.",
-            "OK");
+        if (_selectedRow == -1 || _fixedCells[_selectedRow, _selectedColumn] || _mistakeMade)
+            return;
+        int number = _solution[_selectedRow, _selectedColumn];
+        _board[_selectedRow, _selectedColumn] = number;
+        _cells[_selectedRow, _selectedColumn].Text= number.ToString();
+        CheckSolved();
     }
     private async Task LoadPuzzleAsync()
     {
@@ -231,7 +248,6 @@ public partial class GamePage : ContentPage
             SudokuBoard.Add(line, i, 0);
             Grid.SetRowSpan(line, 11);
         }
-
         for (int i = 3; i <= 7; i += 4)
         {
             BoxView line = new BoxView
@@ -241,7 +257,6 @@ public partial class GamePage : ContentPage
                 VerticalOptions = LayoutOptions.Fill,
                 InputTransparent = true
             };
-
             SudokuBoard.Add(line, 0, i);
             Grid.SetColumnSpan(line, 11);
         }
@@ -249,10 +264,10 @@ public partial class GamePage : ContentPage
     private void StartTimer()
     {
         _timer = Dispatcher.CreateTimer();
-        _stopwatch = new Stopwatch();
         _timer.Interval = TimeSpan.FromSeconds(1);
         _timer.Tick += (s, e) =>
         {
+
                 TimeSpan ts = _stopwatch.Elapsed;
                 TimerLabel.Text = string.Format("{0:00}:{1:00}",ts.Minutes, ts.Seconds );
 
