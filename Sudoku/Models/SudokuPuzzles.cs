@@ -12,6 +12,6 @@ namespace Sudoku.Models
         public string Difficulty { get; set; } = string.Empty;
         public string Puzzle { get; set; } = string.Empty;
         public string Solution { get; set; } = string.Empty;
-
+        public int Status { get; set; } = 0;
     }
 }

@@ -74,7 +74,7 @@ namespace Sudoku.Services
         {
             await InitializeAsync();
             var puzzles = await _database.Table<Models.SudokuPuzzles>()
-                .Where(p=> p.Difficulty == difficulty)
+                .Where(p=> p.Difficulty == difficulty && p.Status == 0)
                 .ToListAsync();
             if (puzzles.Count == 0)
                 return null;
@@ -82,5 +82,20 @@ namespace Sudoku.Services
             var random = new Random();
             return puzzles[random.Next(puzzles.Count)];
         }
+        public async Task UpdatePuzzleStatusAsync(int puzzleId, int status)
+        {
+            await InitializeAsync();
+
+            var puzzle = await _database
+                .FindAsync<SudokuPuzzles>(puzzleId);
+
+            if (puzzle == null)
+                return;
+
+            puzzle.Status = status;
+
+            await _database.UpdateAsync(puzzle);
+        }
     }
+
 }
