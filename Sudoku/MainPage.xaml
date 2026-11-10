@@ -2,65 +2,78 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sudoku.MainPage"
-             BackgroundColor="#252525"
+             BackgroundColor="#151515"
              NavigationPage.HasNavigationBar="False">
 
     <Grid Padding="30"
-                  RowDefinitions="*,Auto,*">
-        <VerticalStackLayout
-            Grid.Row="0"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
-            Spacing="10"
-            />
+          RowDefinitions="*,Auto,*">
 
-        <Label
-                Text="SUDOKU"
-                FontSize="42"
-                FontAttributes="Bold"
-                TextColor="#E5e5e5"
-                HorizontalOptions="Center"/>
+        <VerticalStackLayout Grid.Row="0"
+                             VerticalOptions="End"
+                             HorizontalOptions="Center"
+                             Spacing="8"
+                             Margin="0,0,0,35">
 
-        <Label
-                Text="Challenge your mind"
-                FontSize="16"
-                TextColor="#888888"
-                HorizontalOptions="Center"
-                />
+            <Label Text="SUDOKU"
+                   FontSize="42"
+                   FontAttributes="Bold"
+                   TextColor="#F2F2F2"
+                   HorizontalOptions="Center"
+                   CharacterSpacing="5"/>
 
-
-        <VerticalStackLayout
-            Grid.Row="1" 
-            Spacing="15" 
-            VerticalOptions="Center">
-            <Button
-                Text="NEW GAME"
-                BackgroundColor="DimGrey"
-                TextColor="White"
-                FontSize="18"
-                HeightRequest="60"
-                CornerRadius="12"
-                Clicked="OnNewGameClicked"
-                />
-            <Button
-                Text="STATISTICS"
-                BackgroundColor="#E5E5DD"
-                TextColor="#252525"
-                FontSize="18"
-                HeightRequest="60"
-                CornerRadius="12"
-                Clicked="OnStatisticsClicked"/>
+            <Label Text="A little logic goes a long way."
+                   FontSize="14"
+                   TextColor="#888888"
+                   HorizontalOptions="Center"/>
 
         </VerticalStackLayout>
-        <Label
-            Grid.Row="2"
-            Text="SUDOKU | BERINA MAJDANCIC"
-            FontSize="11"
-            TextColor="#999999"
-            HorizontalOptions="Center"
-            VerticalOptions="End"
-            Margin="0,0,0,15"/>
-    </Grid>
 
+        <VerticalStackLayout Grid.Row="1"
+                             Spacing="14"
+                             VerticalOptions="Center">
+
+            <Button Text="NEW GAME"
+                    BackgroundColor="#E5E5DD"
+                    TextColor="#181818"
+                    FontSize="15"
+                    FontAttributes="Bold"
+                    CharacterSpacing="2"
+                    HeightRequest="58"
+                    CornerRadius="10"
+                    Clicked="OnNewGameClicked"/>
+
+            <Button Text="STATISTICS"
+                    BackgroundColor="#242424"
+                    TextColor="#E5E5E5"
+                    BorderColor="#404040"
+                    BorderWidth="1"
+                    FontSize="15"
+                    CharacterSpacing="2"
+                    HeightRequest="58"
+                    CornerRadius="10"
+                    Clicked="OnStatisticsClicked"/>
+
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Grid.Row="2"
+                             VerticalOptions="End"
+                             HorizontalOptions="Center"
+                             Spacing="5">
+
+            <Label Text="TRAIN YOUR MIND"
+                   FontSize="10"
+                   TextColor="#666666"
+                   CharacterSpacing="3"
+                   HorizontalOptions="Center"/>
+
+            <Label Text="SUDOKU  •  BERINA MAJDANČIĆ"
+                   FontSize="10"
+                   TextColor="#555555"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,10"/>
+
+        </VerticalStackLayout>
+
+    </Grid>
 
 </ContentPage>

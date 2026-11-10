@@ -2,98 +2,131 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sudoku.Views.GamePage"
-              BackgroundColor="#252525"
-                Title="Sudoku">
-    <Grid Padding="7"
+             BackgroundColor="#151515"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid Padding="12"
           RowDefinitions="Auto,Auto,*,Auto,Auto"
-          RowSpacing="15">
-    <VerticalStackLayout
-        Padding="7"
-        Spacing="10"
-        VerticalOptions="Center">
+          RowSpacing="12">
 
-        <Label
-            Text="SUDOKU"
-            FontSize="32"
-            FontAttributes="Bold"
-            TextColor="#E5E5DD"
-            HorizontalOptions="Center"/>
+        <VerticalStackLayout Grid.Row="0"
+                             Spacing="3"
+                             HorizontalOptions="Center"
+                             Margin="0,5,0,5">
 
-        <Label
-            x:Name="DifficultyLabel"
-            FontSize="20"
-            TextColor="#888888"
-            HorizontalOptions="Center"/>
+            <Label Text="SUDOKU"
+                   FontSize="27"
+                   FontAttributes="Bold"
+                   TextColor="#F2F2F2"
+                   CharacterSpacing="4"
+                   HorizontalOptions="Center"/>
 
-       
+            <Label x:Name="DifficultyLabel"
+                   FontSize="12"
+                   TextColor="#888888"
+                   CharacterSpacing="2"
+                   HorizontalOptions="Center"/>
 
-    </VerticalStackLayout>
-
-    <Grid Grid.Row="1"
-              ColumnDefinitions="*,*">
-
-        <VerticalStackLayout Grid.Column="0"
-                                 HorizontalOptions="Center">
-            <Label Text="TIME"
-                       FontSize="11"
-                       TextColor="#888888"/>
-            <Label x:Name="TimerLabel"
-                       Text="00:00"
-                       FontSize="20"
-                       TextColor="#888888"/>
         </VerticalStackLayout>
 
-        <VerticalStackLayout Grid.Column="1"
-                                 HorizontalOptions="Center">
-            <Label Text="MISTAKES"
-                       FontSize="11"
-                       TextColor="#888888"/>
-            <Label x:Name="MistakesLabel"
-                       Text="0"
-                       FontSize="20"
-                       TextColor="#888888"/>
-        </VerticalStackLayout>
+        <Grid Grid.Row="1"
+              ColumnDefinitions="*,*"
+              ColumnSpacing="12">
 
-    </Grid>
+            <Border Grid.Column="0"
+                    BackgroundColor="#242424"
+                    Stroke="#383838"
+                    StrokeThickness="1"
+                    Padding="12"
+                    StrokeShape="RoundRectangle 10">
 
-    <Grid Grid.Row="2"
+                <VerticalStackLayout Spacing="3"
+                                     HorizontalOptions="Center">
+
+                    <Label Text="TIME"
+                           FontSize="10"
+                           TextColor="#777777"
+                           CharacterSpacing="2"/>
+
+                    <Label x:Name="TimerLabel"
+                           Text="00:00"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="#E5E5DD"/>
+
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Grid.Column="1"
+                    BackgroundColor="#242424"
+                    Stroke="#383838"
+                    StrokeThickness="1"
+                    Padding="12"
+                    StrokeShape="RoundRectangle 10">
+
+                <VerticalStackLayout Spacing="3"
+                                     HorizontalOptions="Center">
+
+                    <Label Text="MISTAKES"
+                           FontSize="10"
+                           TextColor="#777777"
+                           CharacterSpacing="2"/>
+
+                    <Label x:Name="MistakesLabel"
+                           Text="0"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="#E5E5DD"/>
+
+                </VerticalStackLayout>
+            </Border>
+
+        </Grid>
+
+        <Grid Grid.Row="2"
               x:Name="SudokuBoard"
-              BackgroundColor="#252525"
+              BackgroundColor="#E5E5DD"
               Padding="0"
-              RowSpacing="0"
-              ColumnSpacing="0"
+              RowSpacing="1"
+              ColumnSpacing="1"
               VerticalOptions="Center"
-              HorizontalOptions="Center"
-                
-              />
+              HorizontalOptions="Center"/>
 
-            <Grid Grid.Row="3"
+        <Grid Grid.Row="3"
               x:Name="NumberPad"
               ColumnDefinitions="*,*,*,*,*,*,*,*,*"
               ColumnSpacing="3"
-              />
+              Margin="0,5,0,0"/>
 
-    <Grid Grid.Row="4"
+        <Grid Grid.Row="4"
               ColumnDefinitions="*,*"
-              ColumnSpacing="15">
+              ColumnSpacing="10"
+              Margin="0,3,0,5">
 
-        <Button
-                Grid.Column="0"
-                Text="ERASE"
-                BackgroundColor="#252525"
-                TextColor="#E5E5DD"
-                CornerRadius="10"
-                Clicked="OnEraseClicked"/>
+            <Button Grid.Column="0"
+                    Text="ERASE"
+                    BackgroundColor="#242424"
+                    TextColor="#E5E5DD"
+                    BorderColor="#444444"
+                    BorderWidth="1"
+                    FontSize="13"
+                    CharacterSpacing="2"
+                    HeightRequest="48"
+                    CornerRadius="9"
+                    Clicked="OnEraseClicked"/>
 
-        <Button
-                Grid.Column="1"
-                Text="HINT"
-                BackgroundColor="#252525"
-                TextColor="White"
-                CornerRadius="10"
-                Clicked="OnHintClicked"/>
+            <Button Grid.Column="1"
+                    Text="HINT"
+                    BackgroundColor="#E5E5DD"
+                    TextColor="#181818"
+                    FontAttributes="Bold"
+                    FontSize="13"
+                    CharacterSpacing="2"
+                    HeightRequest="48"
+                    CornerRadius="9"
+                    Clicked="OnHintClicked"/>
 
-    </Grid>
+        </Grid>
 
     </Grid>
 

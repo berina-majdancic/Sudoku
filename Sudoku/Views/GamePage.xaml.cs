@@ -27,11 +27,15 @@ public partial class GamePage : ContentPage
         InitializeComponent();
         _difficulty = difficulty;
         _databaseService = databaseService;
+
         DifficultyLabel.Text = $"Difficulty:{_difficulty}";
         CreateSudokuBoard();
         CreateNumberPad();
         _ = LoadPuzzleAsync();
         StartTimer();
+        _mistakePosition[0] = -1;
+        _mistakePosition[1] = -1;
+
     }
 
     private void CreateSudokuBoard()
@@ -61,7 +65,7 @@ public partial class GamePage : ContentPage
                     FontSize = 17,
                     Padding = 0,
                     CornerRadius = 0,
-                    BackgroundColor = Color.FromArgb("#252525"),
+                    BackgroundColor = Color.FromArgb("#242424"),
                     TextColor = Colors.White,
                     HorizontalOptions = LayoutOptions.Fill,
                     VerticalOptions = LayoutOptions.Fill,
@@ -101,7 +105,7 @@ public partial class GamePage : ContentPage
                 Text = i.ToString(),
                 FontSize = 17,
                 Padding = 0,
-                BackgroundColor = Color.FromArgb("#252525"),
+                BackgroundColor = Color.FromArgb("#242424"),
                 TextColor = Color.FromArgb("#E5E5DD"),
                 CornerRadius = 8,
                 BorderWidth = 2,
@@ -124,15 +128,37 @@ public partial class GamePage : ContentPage
     { 
         bool selectedMistake= (_selectedRow == _mistakePosition[0] && _selectedColumn == _mistakePosition[1])? true : false ;
         
-        if (_selectedRow != -1 && !selectedMistake)
+        if (_selectedRow != -1)
         {
-            _cells[_selectedRow, _selectedColumn].BackgroundColor = Color.FromArgb("#252525");
+            for (int i = 0; i < 9; i++)
+            {
+                _cells[i, _selectedColumn].BackgroundColor = Color.FromArgb("#242424");
+                _cells[_selectedRow, i].BackgroundColor = Color.FromArgb("#242424");
+                _cells[i, _selectedColumn].TextColor = Color.FromArgb("#E5E5DD");
+                _cells[_selectedRow, i].TextColor = Color.FromArgb("#E5E5DD");
+
+            }
+            _cells[_selectedRow, _selectedColumn].BackgroundColor = Color.FromArgb("#242424");
+            _cells[_selectedRow, _selectedColumn].TextColor = Color.FromArgb("#E5E5DD");
         }
        
         _selectedRow = row;
         _selectedColumn = column;
-        if (!(_mistakePosition[0] == row && _mistakePosition[1] == column))
+       
+            for (int i = 0; i < 9; i++)
+            {
+                _cells[i, _selectedColumn].TextColor = Color.FromArgb("#242424");
+                _cells[_selectedRow, i].TextColor = Color.FromArgb("#242424");
+
+                _cells[i, _selectedColumn].BackgroundColor = Colors.DimGray;
+                _cells[_selectedRow, i].BackgroundColor = Colors.DimGray;
+            }
+            _cells[_selectedRow, _selectedColumn].TextColor = Color.FromArgb("#242424");
             _cells[_selectedRow, _selectedColumn].BackgroundColor = Colors.Grey;
+       
+        if(_mistakeMade)
+        _cells[_mistakePosition[0], _mistakePosition[1]].BackgroundColor = Colors.Red;
+
     }
     private async Task EnterNumber(int number)
     {
@@ -151,6 +177,11 @@ public partial class GamePage : ContentPage
             _mistakeMade = true;
             _mistakePosition[0] = _selectedRow;
             _mistakePosition[1] = _selectedColumn;
+            if(_mistakesCount==3)
+            {
+                await DisplayAlertAsync("Game Over", "You have made 3 mistakes. Game over!", "OK");
+                await Navigation.PopAsync();
+            }
         }
         else
             CheckSolved();
@@ -165,6 +196,7 @@ public partial class GamePage : ContentPage
 
     private async void CheckSolved()
     {
+       // SaveGame();
         for(int row = 0; row < 9; row++)
         {
             for (int col = 0; col < 9; col++)
@@ -176,23 +208,22 @@ public partial class GamePage : ContentPage
         await DisplayAlertAsync("Congratulations!", "You solved the puzzle!", "OK");
         SendBackButtonPressed();
     }
+
     private void OnEraseClicked(object sender, EventArgs e)
     {
         if (_selectedRow == -1 || _fixedCells[_selectedRow, _selectedColumn])
             return;
         if (_mistakePosition[0] == _selectedRow && _mistakePosition[1] == _selectedColumn)
         {
-            _cells[_selectedRow, _selectedColumn].BackgroundColor = Color.FromArgb("#252525");
             _mistakeMade = false;
             _mistakePosition = [-1, -1];
-        }
+            HighlightSelectedCell(_selectedRow, _selectedColumn);
+        } 
 
         _board[_selectedRow, _selectedColumn] = 0;
 
         _cells[_selectedRow, _selectedColumn].Text = "";
     }
-
-    // Hint
     private async void OnHintClicked(object sender, EventArgs e)
     {
         if (_selectedRow == -1 || _fixedCells[_selectedRow, _selectedColumn] || _mistakeMade)
@@ -228,7 +259,7 @@ public partial class GamePage : ContentPage
                 _fixedCells[row, column] = true;
                 _cells[row, column].Text = puzzleValue.ToString();
                 _cells[row, column].TextColor = Color.FromArgb("#E5E5DD");
-                _cells[row, column].BackgroundColor = Color.FromArgb("#252525");
+                _cells[row, column].BackgroundColor = Color.FromArgb("#242424");
             }
         }
 

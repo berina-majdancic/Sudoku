@@ -2,76 +2,103 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sudoku.Views.DifficultyPage"
-             Title="Select Difficulty"
-            BackgroundColor="#252525">
-    <Grid Padding="25"
-          RowDefinitions="Auto,*,Auto">
+             BackgroundColor="#151515"
+             NavigationPage.HasNavigationBar="False">
 
-        <VerticalStackLayout
-            Grid.Row="0"
-            Spacing="8"
-            Margin="0,30,0,30">
+    <Grid Padding="30"
+          RowDefinitions="*,Auto,*">
 
-            <Label
-                Text="SELECT DIFFICULTY"
-                FontSize="28"
-                FontAttributes="Bold"
-                TextColor="#E5e5e5"
-                HorizontalOptions="Center"/>
+        <VerticalStackLayout Grid.Row="0"
+                             VerticalOptions="End"
+                             HorizontalOptions="Center"
+                             Spacing="8"
+                             Margin="0,0,0,35">
 
-            <Label
-                Text="Choose your challenge"
-                FontSize="15"
-                TextColor="#888888"
-                HorizontalOptions="Center"/>
+            <Label Text="SELECT DIFFICULTY"
+                   FontSize="27"
+                   FontAttributes="Bold"
+                   TextColor="#F2F2F2"
+                   HorizontalOptions="Center"
+                   CharacterSpacing="2"/>
 
-        </VerticalStackLayout>
-
-        <VerticalStackLayout
-            Grid.Row="1"
-            Spacing="18"
-            VerticalOptions="Center">
-
-            <Button
-                Text="EASY"
-                BackgroundColor="#A8C9A0"
-                TextColor="#252525"
-                FontSize="20"
-                FontAttributes="Bold"
-                HeightRequest="75"
-                CornerRadius="12"
-                Clicked="OnEasyClicked"/>
-
-            <Button
-                Text="MEDIUM"
-                BackgroundColor="#E8C987"
-                TextColor="#252525"
-                FontSize="20"
-                FontAttributes="Bold"
-                HeightRequest="75"
-                CornerRadius="12"
-                Clicked="OnMediumClicked"/>
-
-            <Button
-                Text="HARD"
-                BackgroundColor="#D9958D"
-                TextColor="#252525"
-                FontSize="20"
-                FontAttributes="Bold"
-                HeightRequest="75"
-                CornerRadius="12"
-                Clicked="OnHardClicked"/>
+            <Label Text="Choose your challenge"
+                   FontSize="14"
+                   TextColor="#888888"
+                   HorizontalOptions="Center"/>
 
         </VerticalStackLayout>
 
-        <Label
-            Grid.Row="2"
-            Text="SELECT YOUR LEVEL"
-            FontSize="11"
-            TextColor="#999999"
-            HorizontalOptions="Center"
-            VerticalOptions="End"
-            Margin="0,0,0,15"/>
+        <VerticalStackLayout Grid.Row="1"
+                             Spacing="14"
+                             VerticalOptions="Center">
+
+            <Button Text="EASY"
+                    BackgroundColor="#E5E5DD"
+                    TextColor="#181818"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CharacterSpacing="2"
+                    HeightRequest="65"
+                    CornerRadius="10"
+                    Clicked="OnEasyClicked"/>
+
+            <Label Text="A relaxed start"
+                   FontSize="12"
+                   TextColor="#777777"
+                   HorizontalOptions="Center"
+                   Margin="0,-8,0,5"/>
+
+            <Button Text="MEDIUM"
+                    BackgroundColor="#242424"
+                    TextColor="#E5E5E5"
+                    BorderColor="#555555"
+                    BorderWidth="1"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CharacterSpacing="2"
+                    HeightRequest="65"
+                    CornerRadius="10"
+                    Clicked="OnMediumClicked"/>
+
+            <Label Text="A balanced challenge"
+                   FontSize="12"
+                   TextColor="#777777"
+                   HorizontalOptions="Center"
+                   Margin="0,-8,0,5"/>
+
+            <Button Text="HARD"
+                    BackgroundColor="#242424"
+                    TextColor="#E5E5E5"
+                    BorderColor="#555555"
+                    BorderWidth="1"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CharacterSpacing="2"
+                    HeightRequest="65"
+                    CornerRadius="10"
+                    Clicked="OnHardClicked"/>
+
+            <Label Text="For experienced players"
+                   FontSize="12"
+                   TextColor="#777777"
+                   HorizontalOptions="Center"
+                   Margin="0,-8,0,0"/>
+
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Grid.Row="2"
+                             VerticalOptions="End"
+                             HorizontalOptions="Center"
+                             Spacing="5">
+
+            <Label Text="SUDOKU  •  CHOOSE WISELY"
+                   FontSize="10"
+                   TextColor="#555555"
+                   CharacterSpacing="2"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,10"/>
+
+        </VerticalStackLayout>
 
     </Grid>
 

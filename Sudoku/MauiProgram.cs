@@ -13,6 +13,8 @@ namespace Sudoku
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("Sansation-Regular.ttf", "SansationRegular");
+                    fonts.AddFont("Sansation-Bold.ttf", "SansationBold");
                 });
             builder.Services.AddSingleton<DatabaseService>();
 
